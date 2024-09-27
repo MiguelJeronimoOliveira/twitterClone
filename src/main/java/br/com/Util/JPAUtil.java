@@ -1,4 +1,4 @@
-package JPAUtil;
+package br.com.Util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,7 +10,7 @@ public class JPAUtil {
 	
 	static {
 		if(factory == null) {
-			factory = Persistence.createEntityManagerFactory("TwitterClone");
+			factory = Persistence.createEntityManagerFactory("twitterClone");
 		}
 	}
 	
