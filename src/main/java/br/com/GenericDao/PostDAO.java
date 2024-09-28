@@ -1,5 +1,7 @@
 package br.com.GenericDao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -24,13 +26,18 @@ public class PostDAO<P> {
 		entityTransaction.commit();	
 	}
 	
-	public void Editar(P entidade) {
+	public P Editar(P entidade) {
 		entityTransaction.begin();
-		
-		entityManager.merge(entidade);
+		P retorno = entityManager.merge(entidade);
 		entityTransaction.commit();
+		
+		return retorno;
 	}
 	
+	public List<P> Posts (Class<P> entidade){
+		List<P> lista = entityManager.createQuery("from " + entidade.getName() + "order by id ASC").getResultList();
+		return lista;
+	}
 	
 	
 }
