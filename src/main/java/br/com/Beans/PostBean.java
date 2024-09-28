@@ -21,7 +21,7 @@ public class PostBean {
 	
 	@PostConstruct
 	public void ExibirTimeLine() {
-		posts = new ArrayList<Post>();
+		posts = postDao.TimeLine(Post.class);
 	}
 	
 	public String Postar() {
@@ -44,6 +44,8 @@ public class PostBean {
 	}
 	
 	//metodo de pesquisar post
+	
+
 	
 	//getters e setters
 	public Post getPost() {

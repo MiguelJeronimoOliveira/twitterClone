@@ -34,8 +34,12 @@ public class PostDAO<P> {
 		return retorno;
 	}
 	
-	public List<P> Posts (Class<P> entidade){
-		List<P> lista = entityManager.createQuery("from " + entidade.getName() + "order by id ASC").getResultList();
+	public List<P> TimeLine(Class<P> entidade){
+		entityTransaction.begin();
+		
+		List<P> lista = entityManager.createQuery("from " +  entidade.getName()).getResultList();
+		
+		entityTransaction.commit();
 		return lista;
 	}
 	
