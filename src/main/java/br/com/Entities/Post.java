@@ -25,6 +25,9 @@ public class Post {
 	@Temporal(TemporalType.TIME)
 	private Date tempoCriacao = new Date();
 	
+	@Temporal(TemporalType.DATE)
+	private Date diaCriacao = new Date();
+	
 	
 	// getters e setters
 	public long getId() {
@@ -57,6 +60,14 @@ public class Post {
 
 	public void setTempoCriacao(Date tempoCriacao) {
 		this.tempoCriacao = tempoCriacao;
+	}
+
+	public Date getDiaCriacao() {
+		return diaCriacao;
+	}
+
+	public void setDiaCriacao(Date diaCriacao) {
+		this.diaCriacao = diaCriacao;
 	}
 	
 	
