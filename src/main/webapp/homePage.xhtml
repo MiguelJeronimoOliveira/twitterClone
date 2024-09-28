@@ -39,6 +39,10 @@
 			</h:column>
 			
 			<h:column>
+				<h:outputText value="#{post.editado}"/>
+			</h:column>
+			
+			<h:column>
 				  <h:commandLink value="Editar" action="#{postBean.EditarPost}">
                     <f:setPropertyActionListener value="#{post}" target="#{postBean.post}"/>
                 </h:commandLink>
