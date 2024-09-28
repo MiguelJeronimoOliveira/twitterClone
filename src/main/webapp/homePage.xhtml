@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>HomePage</title>
+</h:head>
+	
+<h:body>
+	
+	<h:outputText value="Faca o seu post"/>
+	<h:form>
+		
+		<h:inputText value="#{postBean.post.conteudo}"/>
+		<h:commandButton value="Postar" action="#{postBean.Postar}"/>
+		
+		<h:dataTable value="#{postBean.posts}" var="post">
+		
+		
+			<h:column>
+				<f:facet name="header">Conteudo</f:facet>
+				<h:outputText value="#{post.conteudo}" />
+			</h:column>
+			
+			<h:column>
+				 <h:outputText value="#{post.diaCriacao}">
+                    <f:convertDateTime pattern="dd-MM" timeZone="GMT-03:00"/>
+                </h:outputText>
+			</h:column>
+			
+			<h:column>
+				<h:outputText value="#{post.tempoCriacao}">
+					<f:convertDateTime pattern="HH:mm" timeZone="GMT-03:00"/>
+				</h:outputText>
+			</h:column>
+			
+			<h:column>
+				  <h:commandLink value="Editar" action="#{postBean.EditarPost}">
+                    <f:setPropertyActionListener value="#{post}" target="#{postBean.post}"/>
+                </h:commandLink>
+			</h:column>
+			
+		</h:dataTable>
+		
+	</h:form>
+</h:body>
+
+</html>
