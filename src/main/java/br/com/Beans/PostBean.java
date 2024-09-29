@@ -1,5 +1,6 @@
 package br.com.Beans;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import br.com.Entities.EditedEnum;
 import br.com.Entities.Post;
 import br.com.GenericDao.PostDAO;
 
@@ -18,13 +20,17 @@ public class PostBean {
 	private Post post = new Post();
 	private PostDAO<Post> postDao = new PostDAO<Post>();
 	private List<Post> posts = new ArrayList<Post>();
+	private Date diaAtual = new Date();
+	private Date horaAtual = new Date();
+
 	
 	@PostConstruct
 	public void ExibirTimeLine() {
+		posts = new ArrayList<Post>();
 		posts = postDao.TimeLine(Post.class);
 	}
 	
-	public String Postar() {
+	public String Postar() {	
 		postDao.Postar(post);
 		post = new Post();
 		ExibirTimeLine();
@@ -38,14 +44,26 @@ public class PostBean {
 	}
 	
 	public String EditarPost() {
-		// condicao de so poder editar um post de ate 5 minutos atras
 		post = postDao.Editar(post);
-		return "";
+		post.setEditado(EditedEnum.Editado);
+		post.setDiaCriacao(diaAtual);
+		post.setTempoCriacao(horaAtual);
+		return "";			
+		
 	}
 	
 	//metodo de pesquisar post
 	
-
+	public LocalTime HoraAtual() {
+		return LocalTime.now();
+	}
+	
+	public LocalTime TempoLimite() {
+		LocalTime Tempo = HoraAtual().plusMinutes(5);
+		return Tempo;
+	}
+	
+ 
 	
 	//getters e setters
 	public Post getPost() {
