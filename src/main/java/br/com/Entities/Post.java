@@ -1,16 +1,22 @@
 package br.com.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Post {
+public class Post implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,7 +24,10 @@ public class Post {
 	
 	private String conteudo;
 	
-	private String autor;
+	@ManyToOne
+	private Usuario autor;
+	
+	private String nomeAutor;
 	
 	@Temporal(TemporalType.TIME)
 	private Date tempoCriacao = new Date();
@@ -54,11 +63,12 @@ public class Post {
 		this.conteudo = conteudo;
 	}
 
-	public String getAutor() {
+
+	public Usuario getAutor() {
 		return autor;
 	}
 
-	public void setAutor(String autor) {
+	public void setAutor(Usuario autor) {
 		this.autor = autor;
 	}
 
@@ -76,6 +86,14 @@ public class Post {
 
 	public void setDiaCriacao(Date diaCriacao) {
 		this.diaCriacao = diaCriacao;
+	}
+
+	public String getNomeAutor() {
+		return nomeAutor;
+	}
+
+	public void setNomeAutor(String nomeAutor) {
+		this.nomeAutor = nomeAutor;
 	}
 	
 	
