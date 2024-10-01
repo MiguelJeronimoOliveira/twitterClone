@@ -11,9 +11,15 @@
 </h:head>
 	
 <h:body>
+
+	<h:outputText value="#{loginBean.nomeUsuario}"/>
+	<h:form>
+	<h:commandButton value="Sair" action="#{loginBean.Logout}"/>	
+	</h:form>
 	
 	<h:outputText value="Faca o seu post"/>
 	<h:form>
+	
 		
 		<h:inputText value="#{postBean.post.conteudo}"/>
 		<h:commandButton value="Postar" action="#{postBean.Postar}"/>

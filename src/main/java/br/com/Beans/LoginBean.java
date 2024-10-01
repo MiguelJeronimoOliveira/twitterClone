@@ -27,6 +27,7 @@ public class LoginBean {
 		return "homePage?faces-redirect=true";
 	}
 	
+	
 	public String Registrar() {
 		usuarioDao.Register(usuario);
 		usuario = new Usuario();
@@ -41,7 +42,12 @@ public class LoginBean {
 	public String Redirect() {
 		return "registerPage?faces-redirect=true";
 	}
+	
+	public String getNomeUsuario() {
+		return usuarioDao.GetUsuario().getUsername();
+	}
 
+	//getters e setters
 	public Usuario getUsuario() {
 		return usuario;
 	}
