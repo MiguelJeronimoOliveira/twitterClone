@@ -1,4 +1,4 @@
-package br.com.GenericDao;
+package br.com.Dao;
 
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;

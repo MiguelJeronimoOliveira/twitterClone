@@ -1,10 +1,13 @@
-package br.com.GenericDao;
+package br.com.Dao;
 
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.servlet.http.HttpSession;
 
+import br.com.Entities.Usuario;
 import br.com.Util.JPAUtil;
 
 public class PostDAO<P> {
@@ -43,5 +46,12 @@ public class PostDAO<P> {
 		return lista;
 	}
 	
+	public Usuario GetUsuario() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		return usuario;
+	}
 	
 }
