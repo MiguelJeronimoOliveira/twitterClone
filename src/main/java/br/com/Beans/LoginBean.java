@@ -5,8 +5,8 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import br.com.Dao.UsuarioDao;
 import br.com.Entities.Usuario;
-import br.com.GenericDao.UsuarioDao;
 
 @ManagedBean(name = "loginBean")
 public class LoginBean {

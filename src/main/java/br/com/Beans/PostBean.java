@@ -11,7 +11,9 @@ import javax.faces.bean.ViewScoped;
 
 import br.com.Entities.EditedEnum;
 import br.com.Entities.Post;
-import br.com.GenericDao.PostDAO;
+import br.com.Entities.Usuario;
+import br.com.Dao.PostDAO;
+import br.com.Dao.UsuarioDao;
 
 @ManagedBean(name = "postBean")
 @ViewScoped
@@ -22,7 +24,6 @@ public class PostBean {
 	private List<Post> posts = new ArrayList<Post>();
 	private Date diaAtual = new Date();
 	private Date horaAtual = new Date();
-
 	
 	@PostConstruct
 	public void ExibirTimeLine() {
@@ -31,6 +32,8 @@ public class PostBean {
 	}
 	
 	public String Postar() {	
+		post.setAutor(postDao.GetUsuario());
+		post.setNomeAutor(postDao.GetUsuario().getUsername());
 		postDao.Postar(post);
 		post = new Post();
 		ExibirTimeLine();

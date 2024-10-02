@@ -24,9 +24,12 @@
 		<h:inputText value="#{postBean.post.conteudo}"/>
 		<h:commandButton value="Postar" action="#{postBean.Postar}"/>
 		
-		<h:dataTable value="#{postBean.posts}" var="post">
+		<h:dataTable value="#{postBean.posts}" var="post" border="2" cellpadding="5">
 		
-		
+			<h:column>
+				<h:outputText value="#{post.nomeAutor}" />
+			</h:column>
+				
 			<h:column>
 				<f:facet name="header">Conteudo</f:facet>
 				<h:outputText value="#{post.conteudo}" />
