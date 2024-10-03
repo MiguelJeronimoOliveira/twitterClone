@@ -11,9 +11,7 @@ import javax.faces.bean.ViewScoped;
 
 import br.com.Entities.EditedEnum;
 import br.com.Entities.Post;
-import br.com.Entities.Usuario;
 import br.com.Dao.PostDAO;
-import br.com.Dao.UsuarioDao;
 
 @ManagedBean(name = "postBean")
 @ViewScoped
@@ -41,14 +39,24 @@ public class PostBean {
 	}
 	
 	public String DeletarPost() {
+		if(!postDao.GetUsuario().getUsername().equals(post.getNomeAutor())) {
+			post = new Post();
+			return "";
+		}
 		postDao.Deletar(post);
+		post = new Post();
 		ExibirTimeLine();
 		return "";
 	}
 	
+
 	public String EditarPost() {
-		post = postDao.Editar(post);
+		if(!postDao.GetUsuario().getUsername().equals(post.getNomeAutor())) {
+			post = new Post();
+			return "";
+		}
 		post.setEditado(EditedEnum.Editado);
+		post = postDao.Editar(post);
 		post.setDiaCriacao(diaAtual);
 		post.setTempoCriacao(horaAtual);
 		return "";			

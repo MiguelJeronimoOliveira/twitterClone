@@ -23,6 +23,8 @@
 		
 		<h:inputText value="#{postBean.post.conteudo}"/>
 		<h:commandButton value="Postar" action="#{postBean.Postar}"/>
+		<h:commandButton value="Editar" action="#{postBean.EditarPost}"/>
+		
 		
 		<h:dataTable value="#{postBean.posts}" var="post" border="2" cellpadding="5">
 		
@@ -56,6 +58,13 @@
                     <f:setPropertyActionListener value="#{post}" target="#{postBean.post}"/>
                 </h:commandLink>
 			</h:column>
+			
+			<h:column>
+				  <h:commandLink value="Deletar" action="#{postBean.DeletarPost}">
+                    <f:setPropertyActionListener value="#{post}" target="#{postBean.post}"/>
+                </h:commandLink>
+			</h:column>
+			
 			
 		</h:dataTable>
 		
